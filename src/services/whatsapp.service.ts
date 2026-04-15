@@ -1,7 +1,8 @@
 import makeWASocket, { DisconnectReason, useMultiFileAuthState } from '@whiskeysockets/baileys';
 import { Boom } from '@hapi/boom';
-import QRCode from 'qrcode-terminal';
+import QRCode from 'qrcode';
 import { fetchLatestBaileysVersion } from '@whiskeysockets/baileys';
+
 let sock: any = null;
 let isConnecting = false;
 
@@ -19,14 +20,16 @@ export const initWhatsApp = async () => {
     browser: ['Ubuntu', 'Chrome', '120.0.0'],
   });
 
-  sock.ev.on('connection.update', (update: any) => {
+  sock.ev.on('connection.update', async (update: any) => {
     console.log('Connection update:', update);
 
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
       console.log('📱 Scan this QR code with WhatsApp:');
-      QRCode.generate(qr, { small: true });
+      // Generate a data URL (PNG image) that you can click in the logs
+      const qrImage = await QRCode.toDataURL(qr, { width: 300, margin: 2 });
+      console.log(qrImage); // Click this URL to view the QR code image
     }
 
     if (connection === 'close') {
@@ -48,6 +51,7 @@ export const initWhatsApp = async () => {
 
   sock.ev.on('creds.update', saveCreds);
 };
+
 export const sendWhatsAppMessage = async (to: string, message: string): Promise<boolean> => {
   if (!sock) {
     console.error('WhatsApp not initialized');
