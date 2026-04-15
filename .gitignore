@@ -1,0 +1,41 @@
+# dependencies
+/node_modules
+
+# builds
+/dist
+/build
+
+# env files
+.env
+.env.local
+.env.production
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# database
+*.db
+*.sqlite
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# test coverage
+/coverage
+
+# docker volumes
+/data
+/postgres-data
+/redis-data
+
+# WhatsApp auth session (Baileys)
+auth_info_baileys/
