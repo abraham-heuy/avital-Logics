@@ -14,11 +14,15 @@ import { initWhatsApp } from './services/whatsapp.service';
 dotenv.config();
 
 const app = express();
+
+
+app.set('trust proxy', 1);
+
 const PORT = process.env.PORT || 8080;
 
 // 1. Basic Middleware
 app.use(cors({
-  origin: [ 'https://avital.vercel.app'],  // for dev #'http://localhost:5173'
+  origin: [ 'https://avital.vercel.app', 'http://localhost:5173'],  // for dev #'http://localhost:5173'
   credentials: true,
 }));
 app.use(express.json());

@@ -8,7 +8,7 @@ import { authMiddleware } from '../middlewares/auth.middleware';
 import { roleCheck } from '../middlewares/rolecheck.middleware';
 
 const router = Router();
-
+ 
 // Auth routes (public)
 router.post('/auth/register', authController.register);
 router.post('/auth/login', authController.login);

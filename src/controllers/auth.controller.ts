@@ -69,8 +69,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     // Set HTTP‑only cookie
     res.cookie('access_token', accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

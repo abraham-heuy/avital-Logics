@@ -46,7 +46,7 @@ export class AuthService extends BaseService<User> {
       password: hashedPassword,
       verificationCode,
       verificationCodeExpires: new Date(Date.now() + 15 * 60000),
-      role: UserRole.STUDENT,
+      role: UserRole.ADMIN,
     });
     await this.repository.save(user);
 
