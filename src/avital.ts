@@ -9,7 +9,6 @@ import apiRoutes from './routes/app.routes';
 import { AppException } from './exceptions';
 import { AppDataSource } from './config/data-source';
 import { errorHandler } from './middlewares/errorHandler.middleware';
-import { initWhatsApp } from './services/whatsapp.service';
 
 dotenv.config();
 
@@ -64,7 +63,7 @@ const startServer = async () => {
   try {
     await AppDataSource.initialize();
     console.log('✅ Database connection established');
-    await initWhatsApp();
+    //await initWhatsApp();
     app.listen(PORT, () => {
       console.log(` Server running on http://localhost:${PORT}`);
       console.log(`API docs available at http://localhost:${PORT}/health`);
